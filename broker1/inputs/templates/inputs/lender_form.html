@@ -1,0 +1,175 @@
+<html>
+
+
+<!-- STYLES -->
+  <head>
+  <style>
+body {
+        color:  #006699;
+}
+h1 {
+        color: #003399;
+}
+h2 {
+        color:  #ffcc33
+}
+p {
+        color: rgb(0,0,255)
+}
+</style>
+</head>
+  
+  
+  <body>
+    <h1>Lender Form</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form name="form" action="{% url 'inputs:lender_form' %}" method="POST">
+    {% csrf_token %}
+
+
+    <!-- Name Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Lender Information</b></td></tr>
+        <tr><td>Lender First Name: {{ form.lender_first_name }}</td></tr>
+        <tr><td>Lender Last Name: {{ form.lender_last_name }}</td></tr>
+        <tr><td>Lender Company: {{ form.lender_company }}</td></tr>
+        <tr><td>Lender Street Address: {{ form.lender_street_address }}</td></tr>
+        <tr><td>Lender City: {{ form.lender_street_address }}</td></tr>
+        <tr><td>Lender State: {{ form.lender_street_address }}</td></tr>
+        <tr><td>Lender Zip Code: {{ form.lender_zip_code }}</td></tr>
+        <tr><td>Lender Work Email: {{ form.lender_work_email }}</td></tr>
+        <tr><td>Lender Personal Email: {{ form.lender_personal_email }}</td></tr>
+        <tr><td>Lender Work Phone: {{ form.lender_work_email }}</td></tr>
+        <tr><td>Lender Cell Phone: {{ form.lender_cell_phone }}</td></tr>
+        <tr><td>Lender Solicitation: {{ form.lender_solicitation }}</td></tr>
+    </table><br/>
+
+
+    <!-- Owner Occupied Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Owner Occupied Real Estate Parameters</b></td></tr>
+        <tr><td>Office: {{ form.oo_office }}</td></tr>
+        <tr><td>Warehouse: {{ form.oo_warehouse }}</td></tr>
+        <tr><td>Manufacturing: {{ form.oo_manufacturing }}</td></tr>
+        <tr><td>Medical: {{ form.oo_medical }}</td></tr>
+        <tr><td>Mixed Use: {{ form.oo_mixed_use }}</td></tr>
+        <tr><td>Other: {{ form.oo_other }}</td></tr>
+    </table><br/>
+
+
+    <!-- Investment Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Investment Real Estate Parameters</b></td></tr>
+        <tr><td>Office: {{ form.inv_office }}</td></tr>
+        <tr><td>Warehouse: {{ form.inv_warehouse }}</td></tr>
+        <tr><td>Manufacturing: {{ form.inv_manufacturing }}</td></tr>
+        <tr><td>Medical: {{ form.inv_medical }}</td></tr>
+        <tr><td>Mixed Use: {{ form.inv_mixed_use }}</td></tr>
+        <tr><td>Other: {{ form.inv_other }}</td></tr>
+    </table><br/>
+
+    <!-- Multifamily Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Multifamily Loan Parameters</b></td></tr>
+        <tr><td>2 to 4 units: {{ form.mf_2to4 }}</td></tr>
+        <tr><td>More than 4 units: {{ form.mf_gt4 }}</td></tr>
+    </table><br/>
+
+
+    <!-- Constructrion Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Construction Loan Parameters</b></td></tr>
+        <tr><td>Renovation: {{ form.constr_renovation }}</td></tr>
+        <tr><td>Ground Up Spec: {{ form.constr_ground_up_spec }}</td></tr>
+        <tr><td>Commercial: {{ form.constr_commercial }}</td></tr>
+        <tr><td>Residential: {{ form.constr_residential }}</td></tr>
+        <tr><td>Investment with Land: {{ form.constr_inv_with_land }}</td></tr>
+        <tr><td>Owner Occ with Land: {{ form.constr_oo_with_land }}</td></tr>
+    </table><br/>
+
+
+    <!-- SBA Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>SBA Loan Parameters</b></td></tr>
+        <tr><td>SBA 7a: {{ form.sba_7a }}</td></tr>
+        <tr><td>SBA 504: {{ form.sba_504 }}</td></tr>
+        <tr><td>SBA CAPline: {{ form.sba_CAPline }}</td></tr>
+        <tr><td>SBA Microloan: {{ form.sba_micro }}</td></tr>
+        <tr><td>SBA Other: {{ form.sba_other }}</td></tr>
+    </table><br/>
+
+
+    <!-- Miscellaneous Table -->
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Miscellaneous Loans</b></td></tr>
+        <tr><td>HELOC: {{ form.misc_HELOC }}</td></tr>
+        <tr><td>BLOC: {{ form.misc_BLOC }}</td></tr>
+        <tr><td>Bridge: {{ form.misc_bridge }}</td></tr>
+    </table><br/>
+
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Qualifiers</b></td></tr>
+        <tr><td>Pays Brokers Fees: {{ form.qual_pays_fees }}</td></tr>
+        <tr><td>Outside CA: {{ form.qual_outside_ca }}</td></tr>
+        <tr><td>1031 Exchange: {{ form.qual_1031_exchange }}</td></tr>
+        <tr><td>Less than 500K: {{ form.qual_lt_500K }}</td></tr>
+        <tr><td>Less than 1M: {{ form.qual_lt_1M }}</td></tr>
+        <tr><td>Equipment: {{ form.qual_equip }}</td></tr>
+        <tr><td>Non-conforming Property: {{ form.qual_non_conform }}</td></tr>
+        <tr><td>Ground Lease: {{ form.qual_ground_lease }}</td></tr>
+        <tr><td>Relationship: {{ form.qual_relationship }}</td></tr>
+        <tr><td>Cannabis: {{ form.qual_cannabis }}</td></tr>
+        <tr><td>Interest Only: {{ form.qual_io }}</td></tr>
+        <tr><td>Revocable Trust: {{ form.qual_rev_trust }}</td></tr>
+        <tr><td>Irrevocable Trust: {{ form.qual_irrev_trust }}</td></tr>
+        <tr><td>Foreclosure: {{ form.qual_foreclosure }}</td></tr>
+        <tr><td>Single tenant: {{ form.qual_single_tenant }}</td></tr>
+        <tr><td>Bankruptcy: {{ form.qual_bk }}</td></tr>
+        <tr><td>Entitlements: {{ form.qual_entitlements }}</td></tr>
+        <tr><td>Non Profit: {{ form.qual_non_profit }}</td></tr>
+        <tr><td>Cash out Refi: {{ form.qual_cashout_refi }}</td></tr>
+        <tr><td>Non Recourse: {{ form.qual_non_recourse }}</td></tr>
+        <tr><td>Real Estate Collateral: {{ form.qual_re_collateral }}</td></tr>
+        <tr><td>Cross Collaterial: {{ form.qual_cross_collateral }}</td></tr>
+        <tr><td>Business Acquisitions: {{ form.qual_biz_acq }}</td></tr>
+    </table><br/>
+
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Property Types</b></td></tr>
+        <tr><td>Automotive: {{ form.prop_automotive }}</td></tr>
+        <tr><td>Car Wash: {{ form.prop_carwash }}</td></tr>
+        <tr><td>Entertainment: {{ form.prop_entertainment }}</td></tr>
+        <tr><td>Farm: {{ form.prop_farm }}</td></tr>
+        <tr><td>Gas Station: {{ form.prop_gas_station }}</td></tr>
+        <tr><td>Hospital: {{ form.prop_hospital }}</td></tr>
+        <tr><td>Hotel (Flag): {{ form.prop_hotel_flag }}</td></tr>
+        <tr><td>Hotel (Non-flag): {{ form.prop_hotel_nonflag }}</td></tr>
+        <tr><td>Industrial: {{ form.prop_industrial }}</td></tr>
+        <tr><td>Marina: {{ form.prop_marina }}</td></tr>
+        <tr><td>Medical: {{ form.prop_medical }}</td></tr>
+        <tr><td>Mobile Home: {{ form.prop_mobile_home }}</td></tr>
+        <tr><td>Motel (Flag): {{ form.prop_motel_flag }}</td></tr>
+        <tr><td>Motel (Non-flag): {{ form.prop_motel_nonflag }}</td></tr>
+        <tr><td>Multifamily: {{ form.prop_multifamily }}</td></tr>
+        <tr><td>Office: {{ form.prop_office }}</td></tr>
+        <tr><td>Restaurant: {{ form.prop_restaurant }}</td></tr>
+        <tr><td>Retail: {{ form.prop_retail }}</td></tr>
+        <tr><td>Senior Housing: {{ form.prop_senior_housing }}</td></tr>
+        <tr><td>Storage: {{ form.prop_storage }}</td></tr>
+        <tr><td>Student Housing: {{ form.prop_student_housing }}</td></tr>
+    </table><br/>
+    
+
+    <!-- Links -->
+    <br/>
+   <a href="{%url 'inputs:lender_form'%}">Lender Form</a><br/>
+   <a href="{%url 'inputs:lender_list'%}">Lender List</a><br/>
+   <a href="{%url 'inputs:lender_nav'%}">Lender Nav</a><br/>
+   <a href="{%url 'inputs:loan_form'%}">Loan Form</a><br/>
+   <a href="{%url 'inputs:loan_list'%}">Loan List</a><br/>
+   <a href="{%url 'inputs:loan_nav'%}">Loan Nav</a><br/><br/>
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

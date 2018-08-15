@@ -1,0 +1,178 @@
+<html>
+
+
+<!-- STYLES -->
+  <head>
+  <style>
+body {
+        color:  #006699;
+}
+h1 {
+        color: #003399;
+}
+h2 {
+        color:  #ffcc33
+}
+p {
+        color: rgb(0,0,255)
+}
+
+li {
+    display: inline;
+}
+
+div>table {
+  float: left
+  width: 300px;
+  border: 10px solid #006699;
+  padding: 25px;
+  margin: 25px;
+}
+
+
+</style>
+</head>
+  
+  
+  <body>
+    <h1>Loan Form</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form name="form" action="{% url 'inputs:loan_form' %}" method="POST">
+    {% csrf_token %}
+
+    <!-- Personal Information Table -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Client Information</b></td></tr>
+        <tr><td>Client First Name: {{ form.client_first_name }}</td></tr>
+        <tr><td>Client Last Name: {{ form.client_last_name }}</td></tr>
+        <tr><td>Client Work Email: {{ form.client_work_email }}</td></tr>
+        <tr><td>Client Personal Email: {{ form.client_personal_email }}</td></tr>
+        <tr><td>Client Work Phone: {{ form.client_work_phone }}</td></tr>
+        <tr><td>Client Cell Phone: {{ form.client_cell_phone }}</td></tr>
+        <tr><td>Client Street Address: {{ form.client_street_address }}</td></tr>
+        <tr><td>Client City: {{ form.client_city }}</td></tr>
+        <tr><td>Client State: {{ form.client_state }}</td></tr>
+        <tr><td>Client Zip Code: {{ form.client_zip_code }}</td></tr></br>
+        <tr><td>Client Using POC: {{ form.client_using_poc }}</td></tr>
+    </table>
+</div>
+
+<!-- POC Information Table -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Client POC Information</b></td></tr>
+        <tr><td>POC Name: {{ form.POC_name }}</td></tr>
+        <tr><td>POC Company: {{ form.POC_business }}</td></tr>
+        <tr><td>POC Work Phone: {{ form.POC_work_phone }}</td></tr>
+        <tr><td>POC Cell Phone: {{ form.POC_cell_phone }}</td></tr>
+        <tr><td>POC Email: {{ form.POC_email }}</td></tr>
+    </table>
+</div>
+
+    <!-- Business Table -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Client Business Information</b></td></tr>
+        <tr><td>Occupation: {{ form.client_occupation }}</td></tr>
+        <tr><td>Company Name: {{ form.client_company_name }}</td></tr>
+        <tr><td>Company Street Address: {{ form.client_company_street_address }}</td></tr>
+        <tr><td>Company City: {{ form.client_company_city }}</td></tr>
+        <tr><td>Company State: {{ form.client_company_state }}</td></tr>
+        <tr><td>Company Zip: {{ form.client_company_zip }}</td></tr>
+    </table>
+</div>
+
+    <!-- Loan Table -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Loan Information</b></td></tr>
+        <tr><td>Loan Amount: {{ form.loan_amount }}</td></tr>
+        <tr><td>Loan To Value: {{ form.loan_to_value }}</td></tr>
+        <tr><td>Loan DSCR: {{ form.loan_dcsr }}</td></tr>
+        <tr><td>Loan Description: {{ form.loan_desc }}</td></tr>
+    </table>
+</div>
+
+    <!-- Financial Table -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Client Financial Information</b></td></tr>
+        <tr><td>Salary: {{ form.fin_salary }}</td></tr>
+        <tr><td>Years in business: {{ form.fin_years_in_business }}</td></tr>
+        <tr><td>Total Debt: {{ form.fin_total_debt }}</td></tr>
+        <tr><td>Total Monthly Payments: {{ form.fin_monthly_payments }}</td></tr>
+        <tr><td>FICO: {{ form.fin_fico }}</td></tr>
+        <tr><td>Owns home: {{ form.fin_owns_home }}</td></tr>
+        <tr><td>Bankruptcy?: {{ form.fin_bankruptcy }}</td></tr>
+        <tr><td>Short Sale?: {{ form.fin_short_sale }}</td></tr>
+    </table>
+</div>
+
+    <!-- Property Information -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Property Information (Obtained)</b></td></tr>
+        <tr><td>Property Address: {{ form.property_address }}</td></tr>
+        <tr><td>Property Value: {{ form.property_value }}</td></tr>
+    </table>
+</div>
+
+    <!-- Needs List -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Needs List</b></td></tr>
+        <tr><td>Executive Summary: {{ form.docs_executive_summary }}</td></tr>
+        <tr><td>Credit Report: {{ form.docs_credit_report }}</td></tr>
+        <tr><td>Personal Taxes: {{ form.docs_personal_taxes }}</td></tr>
+        <tr><td>Business Taxes: {{ form.docs_business_taxes }}</td></tr>
+        <tr><td>P and L: {{ form.docs_P_and_L }}</td></tr>
+        <tr><td>Expense Report: {{ form.docs_expense_report }}</td></tr>
+        <tr><td>Broker's Opinion: {{ form.docs_brokers_opinion }}</td></tr>
+        <tr><td>Appraisal: {{ form.docs_appraisal }}</td></tr>
+        <tr><td>Environmental: {{ form.docs_environmental }}</td></tr>
+        <tr><td>Rent Roll: {{ form.docs_rent_roll }}</td></tr>
+        <tr><td>Lease Agreements: {{ form.docs_lease_agreements }}</td></tr>
+    </table>
+</div>
+                        
+    <!-- Needs List -->
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+        <tr bgcolor="#ffff99"><td><b>Business Info</b></td></tr>
+        <tr><td>Business Name: {{ form.business_name }}</td></tr>
+        <tr><td>Business Main Phone: {{ form.business_main_phone }}</td></tr>
+        <tr><td>Business Website: {{ form.business_website }}</td></tr>
+        <tr><td>Business Type: {{ form.business_type }}</td></tr>
+        <tr><td>Year Business Established: {{ form.business_year_established }}</td></tr>
+    </table>
+</div>
+        
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+    <tr bgcolor="#ffff99"><td><b>Lender Links</b></td></tr>
+    <tr><td><a href="{%url 'inputs:lender_form'%}">Lender Form</a></td></tr>
+    <tr><td><a href="{%url 'inputs:lender_list'%}">Lender List</a></td></tr>
+    <tr><td><a href="{%url 'inputs:lender_nav'%}">Lender Nav</a></td></tr>
+    </table><br/>
+</div>
+<div style="float: left">
+    <table bgcolor=#ffffcc>
+    <tr bgcolor="#ffff99"><td><b>Loan Links</b></td></tr>
+    <tr><td><a href="{%url 'inputs:loan_form'%}">Loan Form</a></td></tr>
+    <tr><td><a href="{%url 'inputs:loan_list'%}">Loan List</a></td></tr>
+    <tr><td><a href="{%url 'inputs:loan_nav'%}">Loan Nav</a></td></tr>
+    </table><br/>
+</div>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
