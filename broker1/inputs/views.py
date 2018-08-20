@@ -46,7 +46,10 @@ def loan_nav(request):
 def loan_form(request):
     if request.method == 'POST': 
         form = LoanForm(request.POST)
-        form.save()
+        if form.is_valid():
+            form.save()
+        else:
+            print (form.errors)
     else:
         form = LoanForm()
     return render(request, 'inputs/loan_form.html', {'form': form})
