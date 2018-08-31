@@ -10,6 +10,18 @@ from .models import Loan
 
 
 # defs
+def index(request):
+    template = loader.get_template('inputs/index.html')
+    lenders = Lender.objects.values('lender_first_name', 'lender_last_name', 'lender_company')
+    loans   = Loan.objects.values('client_first_name', 'client_last_name', 'loan_amount') #TODO add loan type
+
+    context = {
+        'lenders': lenders,
+        'loans': loans,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def lender_nav(request):
     template = loader.get_template('inputs/lender_nav.html')
     context = {
@@ -18,7 +30,7 @@ def lender_nav(request):
 
 
 def lender_form(request):
-    if request.method == 'POST': 
+    if request.method == 'POST':
         form = LenderForm(request.POST)
         form.save()
     else:
@@ -44,7 +56,7 @@ def loan_nav(request):
 
 
 def loan_form(request):
-    if request.method == 'POST': 
+    if request.method == 'POST':
         form = LoanForm(request.POST)
         if form.is_valid():
             form.save()

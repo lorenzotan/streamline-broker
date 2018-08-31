@@ -9,9 +9,10 @@ from django.urls import path
 
 from . import views
 
-# app_name is a namespace varaible 
+# app_name is a namespace varaible
 app_name = 'inputs'
 urlpatterns = [
+    path(''   , views.index, name = 'index'),
     path('lender_nav/'   , views.lender_nav  , name = 'lender_nav'),
     path('lender_form/'  , views.lender_form , name = 'lender_form'),
     path('lender_list/'  , views.lender_list , name = 'lender_list'),
