@@ -6,7 +6,32 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'inputs/css/index.css' %}" />
   </head>
-  <body>
+  <body class="bg">
+
+    <nav class="navbar navbar-inverse">
+      <div class="container fluid">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lenders
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="inputs/lender_form/">Form</a></li>
+              <li><a href="inputs/lender_list/">List</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Loans
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="inputs/loan_form/">Form</a></li>
+              <li><a href="inputs/loan_list/">List</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- Loan Information -->
     <section class="container">
       <header>
@@ -18,40 +43,33 @@
         </button>
       </header>
       <section class="content">
-        <table>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Loan Type</th>
-            <th>Loan Amount</th>
-          </tr>
-          {% for loan in loans %}
-          <tr>
-            <td>{{ loan.client_first_name }}</td>
-            <td>{{ loan.client_last_name }}</td>
-            <td>Loan Type</td>
-            <td>{{ loan.loan_amount }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td align="center" colspan="4">No Loans to display</td>
-          </tr>
-          {% endfor %}
-          {% for loan in loans %}
-          <tr>
-            <td>{{ loan.client_first_name }}</td>
-            <td>{{ loan.client_last_name }}</td>
-            <td>Loan Type</td>
-            <td>{{ loan.loan_amount }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td align="center" colspan="4">No Loans to display</td>
-          </tr>
-          {% endfor %}
+        <table class="fixed_header">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Loan Type</th>
+              <th>Loan Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for loan in loans %}
+            <tr>
+              <td>{{ loan.client_first_name }}</td>
+              <td>{{ loan.client_last_name }}</td>
+              <td>Loan Type</td>
+              <td>{{ loan.loan_amount }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td align="center" colspan="4">No Loans to display</td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
       </section>
     </section>
+
     <!-- Lender Information -->
     <section class="container">
       <header>

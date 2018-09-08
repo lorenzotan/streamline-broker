@@ -4,6 +4,19 @@ body {
     font-size: 10pt;
 }
 
+.dropdown:hover .dropdown-menu {
+    display:block;
+}
+
+/* https://www.w3schools.com/howto/howto_css_full_page.asp */
+.bg {
+    background-image: url("../images/handshake.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 a:link, a:visited, a:active {
     color: #fff;
     text-decoration: none;
@@ -12,51 +25,4 @@ a:link, a:visited, a:active {
 a:hover {
     color: #000;
     text-decoration: none;
-}
-
-section.container {
-    background-color: #ccc;
-    border: 3px solid blue;
-    height: 40%;
-    margin: 1em auto 1em;
-    min-height: 100px;
-    padding: 0px;
-    width: 65%;
-}
-
-section.content {
-    background-color: #ccc;
-    height: 90%;
-    min-height: 100px;
-    overflow: scroll;
-    padding: 0px;
-}
-
-header {
-    background-color: #0066cc;
-    border: 1px solid white;
-    color: #fff;
-    padding: 7px;
-}
-
-table {
-    font-size: 10pt;
-    width: 100%;
-}
-
-table th {
-    background-color: #99ccff;
-}
-
-table, th, td {
-    border: 1px solid;
-    border-collapse: collapse;
-}
-
-table tr:nth-child(even) {
-    background-color: #fff;
-}
-
-.btn-broker {
-    background-color: #0066cc;
 }
