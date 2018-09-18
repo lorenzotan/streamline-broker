@@ -71,6 +71,6 @@ def loan_list(request):
     template = loader.get_template('inputs/loan_list.html')
     loan_list = Loan.objects.all()
     context = {
-        'loans': loan_list,
+        'clients': loan_list,
     }
     return HttpResponse(template.render(context, request))
