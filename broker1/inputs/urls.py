@@ -5,18 +5,22 @@ Created on Sat Jun 23 20:06:15 2018
 @author: eric
 """
 
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
 # app_name is a namespace varaible
 app_name = 'inputs'
 urlpatterns = [
-    path(''   , views.index, name = 'index'),
-    path('lender_nav/'   , views.lender_nav  , name = 'lender_nav'),
-    path('lender_form/'  , views.lender_form , name = 'lender_form'),
-    path('lender_list/'  , views.lender_list , name = 'lender_list'),
-    path('loan_nav/'     , views.loan_nav  , name = 'loan_nav'),
-    path('loan_form/'    , views.loan_form , name = 'loan_form'),
-    path('loan_list/'    , views.loan_list , name = 'loan_list'),
+    path('', views.index, name='index'),
+
+    re_path('lender/(?P<pk>[0-9]+)/$', views.lender_detail, name='lender_detail'),
+    re_path('lender_form/(?P<pk>[0-9]+)/$', views.edit_lender_form, name='edit_lender_form'),
+    path('lender_form/', views.lender_form, name='lender_form'),
+    path('lender_list/', views.lender_list, name='lender_list'),
+
+    re_path('loan/(?P<pk>[0-9]+)/$', views.loan_detail, name='loan_detail'),
+    re_path('loan_form/(?P<pk>[0-9]+)/$', views.edit_loan_form, name='edit_loan_form'),
+    path('loan_form/', views.loan_form, name='loan_form'),
+    path('loan_list/', views.loan_list, name='loan_list'),
 ]
