@@ -6,7 +6,11 @@
   <body>
     <h1>Loan Form</h1>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if loan.id %}
+    <form name="form" action="{% url 'inputs:edit_loan_form' pk=loan.id %}" method="POST">
+    {% else %}
     <form name="form" action="{% url 'inputs:loan_form' %}" method="POST">
+    {% endif %}
     {% csrf_token %}
 
     <!-- Personal Information Table -->
@@ -230,7 +234,7 @@
     </div>
 
     <center>
-      <button>Submit</button>
+      <button>{{ submit }}</button>
     </center>
     </form>
   </body>

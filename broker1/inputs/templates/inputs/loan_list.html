@@ -57,7 +57,7 @@
             </tr>
           </thead>
           {% for client in clients %}
-          <tr class="row-link" data-href="#">
+          <tr class="row-link" data-href="/inputs/loan_form/{{ client.id }}/">
             <td>{{ client.client_first_name }}</td>
             <td>{{ client.client_last_name }}</td>
             <td>Loan Type</td>
@@ -72,7 +72,7 @@
       </section>
     </section>
 
-    <script type="text/javascript" src="{% static 'js/list.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inputs/js/list.js' %}"></script>
 
   </body>
 </html>

@@ -57,7 +57,7 @@
             </tr>
           </thead>
           {% for lender in lenders %}
-          <tr class="row-link" data-href="#">
+          <tr class="row-link" data-href="/inputs/lender_form/{{ lender.id }}">
             <td>{{ lender.lender_first_name }}</td>
             <td>{{ lender.lender_last_name }}</td>
             <td>{{ lender.lender_company }}</td>
@@ -71,7 +71,7 @@
       </section>
     </section>
 
-    <script type="text/javascript" src="{% static 'js/list.js' %}"></script>
+    <script type="text/javascript" src="{% static 'inputs/js/list.js' %}"></script>
 
   </body>
 </html>

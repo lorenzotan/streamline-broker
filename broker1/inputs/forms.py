@@ -7,14 +7,15 @@ Created on Sat Jun  9 10:07:01 2018
 from django import forms
 from .models import Lender
 from .models import Loan
- 
+
 class CommentForm(forms.Form):
     name = forms.CharField()
     url = forms.URLField()
     comment = forms.CharField(widget=forms.Textarea)
-    
-    
+
+
 class LenderForm(forms.ModelForm):
+    # class Meta tells django what model and fields to use
     class Meta:
         model = Lender
         fields = ('lender_first_name', 'lender_last_name','lender_company','lender_street_address',
@@ -115,7 +116,7 @@ class LenderForm(forms.ModelForm):
             'prop_student_housing': forms.RadioSelect,
         }
 
-        
+
 class LoanForm(forms.ModelForm):
     class Meta:
         model = Loan
