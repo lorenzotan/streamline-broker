@@ -51,7 +51,7 @@
 
     <!-- space reserved for selected loan type -->
     <div id="loanTypeForm">
-    {% if loantype != None %}
+    {% if loantype is not None and loantype != 'None' %}
       <div class="formContainer">
         <div class="grid3c">
           <h1 class="formHeader">{{ loantype }}</h1>

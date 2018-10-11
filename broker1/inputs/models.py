@@ -49,7 +49,7 @@ class Loan(models.Model):
     client_work_phone     = models.IntegerField(default = None, blank = True, null = True)
     client_cell_phone     = models.IntegerField(default = None, blank = True, null = True)
     client_using_poc      = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=NO, )
-    client_loan_type      = models.CharField(max_length=15, choices=LOAN_TYPE_CHOICES, default=NO )
+    client_loan_type      = models.CharField(max_length=15, choices=LOAN_TYPE_CHOICES, default=None)
 
     # POC Contact Information
     POC_name              = models.CharField(max_length=200, default = None, blank = True, null = True)
@@ -257,8 +257,8 @@ class ConstructionLoan(models.Model):
 class MixedUseLoan(models.Model):
     property_type   = models.CharField(max_length=25, default='', blank=True, null=True)
     business_list   = models.CharField(max_length=50, default='', blank=True, null=True)
-    annual_rent     = models.IntegerField()
-    annual_expense  = models.IntegerField()
+    annual_rent     = models.IntegerField(blank=True, null=True)
+    annual_expense  = models.IntegerField(blank=True, null=True)
     purpose         = models.CharField(max_length=15, choices=LOAN_PURPOSE)
     cash_out        = models.NullBooleanField(default=None)
     client          = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
@@ -267,8 +267,8 @@ class MixedUseLoan(models.Model):
 class MultiFamilyLoan(models.Model):
     number_of_units = models.IntegerField()
     year_built      = models.IntegerField()
-    annual_rent     = models.IntegerField()
-    annual_expense  = models.IntegerField()
+    annual_rent     = models.IntegerField(blank=True, null=True)
+    annual_expense  = models.IntegerField(blank=True, null=True)
     purpose         = models.CharField(max_length=15, choices=LOAN_PURPOSE)
     cash_out        = models.NullBooleanField(default=None)
     client          = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
@@ -278,8 +278,8 @@ class RetailLoan(models.Model):
     property_type  = models.CharField(max_length=25, default='', blank=True, null=True)
     name           = models.CharField(max_length=25, default='', blank=True, null=True)
     address        = models.CharField(max_length=25, default='', blank=True, null=True)
-    annual_rent    = models.IntegerField()
-    annual_expense = models.IntegerField()
+    annual_rent    = models.IntegerField(blank=True, null=True)
+    annual_expense = models.IntegerField(blank=True, null=True)
     purpose        = models.CharField(max_length=15, choices=LOAN_PURPOSE)
     cash_out       = models.NullBooleanField(default=None)
     client         = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)

@@ -15,6 +15,7 @@ from .models import *
 
 # NOTE this needs to match the list in loan_form.html template
 LoanTypeForms = {
+    'None': None,
     'Bloc': BlocLoanForm,
     'Construction': ConstructionLoanForm,
     'Mixed Use': MixedUseLoanForm,
@@ -23,6 +24,7 @@ LoanTypeForms = {
 }
 
 LoanTypeModels = {
+    'None': None,
     'Bloc': BlocLoan,
     'Construction': ConstructionLoan,
     'Mixed Use': MixedUseLoan,
@@ -152,36 +154,38 @@ def loan_detail(request, pk):
 
 
 #TODO should delete loan type record if it changes
-#XXX possible bug if you change the loan type 
-#XXX reload loantype info when loan type drop down value changes back to original value
 def edit_loan_form(request, pk):
-    loan_data          = get_object_or_404(Loan, id=pk)
-    loantype_form_obj  = LoanTypeForms.get(loan_data.client_loan_type)
-    loantype_model_obj = LoanTypeModels.get(loan_data.client_loan_type)
-    loantype_data      = get_object_or_404(loantype_model_obj, client_id=pk)
+    submit    = 'Update'
+    loan_data = get_object_or_404(Loan, id=pk)
+    loantype_data = None
+    loantype_html = None
 
-    submit = 'Update'
 
-    print ("DEBUG BEFORE {}".format(loantype_form_obj))
-    print ()
     if request.method == 'POST':
+        if loan_data.client_loan_type != request.POST.get('client_loan_type'):
+            loantype = request.POST.get('client_loan_type')
+        else:
+            loantype = loan_data.client_loan_type
+
+        loantype_form_obj  = LoanTypeForms.get(loantype)
+        loantype_model_obj = LoanTypeModels.get(loantype)
+
+        if loantype != 'None' and loantype is not None:
+            loantype_data, created = loantype_model_obj.objects.get_or_create(client_id=pk)
         # this returns a queryset object
         #lender = Lender.filter(id=pk).values()
 
-        form_html         = LoanForm(request.POST, instance=loan_data)
-        loantype          = request.POST.get('client_loan_type')
-        loantype_form_obj = LoanTypeForms.get(loantype)#(request.POST)
-        loantype_html     = loantype_form_obj(request.POST, instance=loantype_data)
+        form_html     = LoanForm(request.POST, instance=loan_data)
+        if loantype != 'None' and loantype is not None:
+            loantype_html = loantype_form_obj(request.POST, instance=loantype_data)
 
-        print ()
-        print ("DEBUG {}".format(request.POST))
-        print ("DEBUG {}".format(loantype_data))
-        print ("DEBUG AFTER {}".format(loantype_form_obj))
-        print ()
-
-        if form_html.is_valid() and loantype_html.is_valid():
+        if form_html.is_valid():
             form_html.save()
-            loantype_html.save()
+
+            if loantype != 'None' and loantype is not None and loantype_html.is_valid():
+                new_loantype = loantype_html.save(commit=False)
+                new_loantype.client_id = pk
+                new_loantype.save()
 
             return redirect('inputs:loan_list')
 
@@ -190,10 +194,16 @@ def edit_loan_form(request, pk):
             print (loantype_html.errors)
 
     else:
-        form_html = LoanForm(instance=loan_data)
-        loantype_html = loantype_form_obj(instance=loantype_data)
+        loantype           = loan_data.client_loan_type
+        loantype_form_obj  = LoanTypeForms.get(loantype)
+        loantype_model_obj = LoanTypeModels.get(loantype)
 
-    print ("DEBUG {}".format(loantype_html))
+        form_html = LoanForm(instance=loan_data)
+
+        if loantype != 'None' and loantype is not None:
+            loantype_data, created = loantype_model_obj.objects.get_or_create(client_id=pk)
+            loantype_html = loantype_form_obj(instance=loantype_data)
+
 
     context = {
         'form':            form_html,
@@ -208,18 +218,23 @@ def edit_loan_form(request, pk):
 
 def loan_form(request):
     submit = "Submit"
+    loantype_form = None;
 
     if request.method == 'POST':
         client        = LoanForm(request.POST)
         loantype      = request.POST.get('client_loan_type')
-        loantype_form = LoanTypeForms.get(loantype)(request.POST)
 
-        if client.is_valid() and loantype_form.is_valid():
+        if loantype != 'None' and loantype is not None:
+            loantype_form = LoanTypeForms.get(loantype)(request.POST)
+
+        if client.is_valid():
             new_client   = client.save()
-            new_loantype = loantype_form.save(commit=False)
 
-            new_loantype.client_id = new_client.id
-            new_loantype.save()
+            if loantype != 'None' and loantype is not None and loantype_form.is_valid():
+                new_loantype = loantype_form.save(commit=False)
+
+                new_loantype.client_id = new_client.id
+                new_loantype.save()
 
         else:
             print (client.errors)
