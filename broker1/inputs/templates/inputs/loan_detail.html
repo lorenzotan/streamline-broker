@@ -35,7 +35,23 @@
         {{ loan_data.client_work_phone }}
         <label>Using POC:</label>
         {{ loan_data.client_using_poc }}
+        <label>Loan Type:</label>
+        {{ loan_data.client_loan_type.label_tag }}
+        {{ loan_data.client_loan_type }}
       </div>
+    </div>
+
+    <div id="loanTypeForm">
+    {% comment not currently working %}
+    {% if loantype != None %}
+      <div class="formContainer">
+        <h1 class="formHeader">{{ loantype }}</h1>
+        {% for field in loantype_fields %}
+            {{ field }}
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endcomment %}
     </div>
 
 <!-- POC Information Table -->

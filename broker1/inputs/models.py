@@ -1,6 +1,12 @@
 from django.db import models
 
 # Create your models here.
+LOAN_PURPOSE = (
+    ('purch',  'Purchase'),
+    ('refi',   'Refinance'),
+    ('refurb', 'Refurbish'),
+)
+
 class Loan(models.Model):
 
     # Boolean Choices
@@ -16,12 +22,19 @@ class Loan(models.Model):
     INV = 'Investment'
     CON = 'Construction'
     SBA = 'SBA'
+
     LOAN_TYPE_CHOICES = (
-            (OO, 'Owner Occupied'),
-            (INV, 'Investment'),
-            (CON, 'Construction'),
-            (SBA, 'SBA'),
-            )
+        ('None', 'Please Select'),
+        ('Bloc', 'Bloc'),
+        ('Construction', 'Construction'),
+        ('Mixed Use', 'Mixed Use'),
+        ('Multi Family', 'Multi Family'),
+        ('Retail', 'Retail'),
+            #(OO, 'Owner Occupied'),
+            #(INV, 'Investment'),
+            #(CON, 'Construction'),
+            #(SBA, 'SBA'),
+    )
 
 
     # Client Personal Information
@@ -36,6 +49,7 @@ class Loan(models.Model):
     client_work_phone     = models.IntegerField(default = None, blank = True, null = True)
     client_cell_phone     = models.IntegerField(default = None, blank = True, null = True)
     client_using_poc      = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=NO, )
+    client_loan_type      = models.CharField(max_length=15, choices=LOAN_TYPE_CHOICES, default=NO )
 
     # POC Contact Information
     POC_name              = models.CharField(max_length=200, default = None, blank = True, null = True)
@@ -91,6 +105,7 @@ class Loan(models.Model):
     business_website          = models.CharField(max_length=200, default = None, blank = True, null = True)
     business_type             = models.CharField(max_length=200, default = None, blank = True, null = True)
     business_year_established = models.IntegerField(default = None, blank = True, null = True)
+
 
 
     def __str__(self):
@@ -210,3 +225,61 @@ class Lender(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.lender_first_name, self.lender_last_name)
+
+#class LoanTypes(models.Model):
+
+#class Qualifiers(models.Model):
+
+#TODO should set client as a foreign key
+class BlocLoan(models.Model):
+    name           = models.CharField(max_length=50, default='', blank=True, null=True)
+    address        = models.CharField(max_length=50, default='', blank=True, null=True)
+    annual_receipt = models.CharField(max_length=25, verbose_name="Business Name")
+    loan_amt       = models.IntegerField(verbose_name="Loan Amount")
+    term           = models.IntegerField(default='', verbose_name="Business Name")
+    client         = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
+
+    #def get_verbose_name(obj):
+    #    return obj._meta.verbose_name
+
+
+class ConstructionLoan(models.Model):
+    property_type = models.CharField(max_length=50, default='', blank=True, null=True)
+    address       = models.CharField(max_length=50, default='', blank=True, null=True)
+    architect     = models.CharField(max_length=50, default='', blank=True, null=True)
+    contractor    = models.CharField(max_length=50, default='', blank=True, null=True)
+    bridge        = models.NullBooleanField(default=None)
+    land          = models.NullBooleanField(default=None)
+    client        = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
+
+
+# XXX property type is supposed to be a drop down, what are the choices??
+class MixedUseLoan(models.Model):
+    property_type   = models.CharField(max_length=25, default='', blank=True, null=True)
+    business_list   = models.CharField(max_length=50, default='', blank=True, null=True)
+    annual_rent     = models.IntegerField()
+    annual_expense  = models.IntegerField()
+    purpose         = models.CharField(max_length=15, choices=LOAN_PURPOSE)
+    cash_out        = models.NullBooleanField(default=None)
+    client          = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
+
+
+class MultiFamilyLoan(models.Model):
+    number_of_units = models.IntegerField()
+    year_built      = models.IntegerField()
+    annual_rent     = models.IntegerField()
+    annual_expense  = models.IntegerField()
+    purpose         = models.CharField(max_length=15, choices=LOAN_PURPOSE)
+    cash_out        = models.NullBooleanField(default=None)
+    client          = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)
+
+
+class RetailLoan(models.Model):
+    property_type  = models.CharField(max_length=25, default='', blank=True, null=True)
+    name           = models.CharField(max_length=25, default='', blank=True, null=True)
+    address        = models.CharField(max_length=25, default='', blank=True, null=True)
+    annual_rent    = models.IntegerField()
+    annual_expense = models.IntegerField()
+    purpose        = models.CharField(max_length=15, choices=LOAN_PURPOSE)
+    cash_out       = models.NullBooleanField(default=None)
+    client         = models.OneToOneField(Loan, on_delete=models.CASCADE, null=True)

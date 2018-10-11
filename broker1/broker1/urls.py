@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # XXX this is spitting out not unique warning
     path('', include('inputs.urls')),
     path('inputs/', include('inputs.urls')),
     path('admin/', admin.site.urls),
