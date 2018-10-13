@@ -2,6 +2,7 @@ body {
     color: #000;
     font-family: Arial;
     font-size: 10pt;
+    margin: 0;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -12,7 +13,7 @@ body {
 .bg {
     background-image: url("../images/handshake.jpg");
     height: 100%;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
 }

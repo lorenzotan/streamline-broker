@@ -1,9 +1,5 @@
-{% load static %}
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'inputs/css/form.css' %}" />
-  </head>
-  <body>
+{% extends 'inputs/base.html' %}
+{% block content %}
     <h1>Loan Form</h1>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% if loan.id %}
@@ -237,5 +233,4 @@
       <button>{{ submit }}</button>
     </center>
     </form>
-  </body>
-</html>
+{% endblock %}
