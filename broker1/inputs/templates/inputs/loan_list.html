@@ -24,7 +24,7 @@
           <tr class="row-link" data-href="/inputs/loan_form/{{ client.id }}/">
             <td>{{ client.client_first_name }}</td>
             <td>{{ client.client_last_name }}</td>
-            <td>Loan Type</td>
+            <td>{{ client.client_loan_type }}</td>
             <td>{{ client.loan_amount }}</td>
           </tr>
           {% empty %}

@@ -5,8 +5,8 @@ Created on Sat Jun  9 10:07:01 2018
 @author: eric
 """
 from django import forms
-from .models import Lender
-from .models import Loan
+from django.utils.translation import gettext_lazy as gettext
+from .models import *
 
 class CommentForm(forms.Form):
     name = forms.CharField()
@@ -125,6 +125,7 @@ class LoanForm(forms.ModelForm):
                   'client_work_email','client_personal_email',
                   'client_work_phone','client_cell_phone',
                   'client_using_poc',
+                  'client_loan_type',
                   'POC_name','POC_business','POC_work_phone','POC_cell_phone','POC_email',
                   'client_occupation','client_company_name','client_company_street_address',
                   'client_company_city','client_company_state','client_company_zip',
@@ -157,5 +158,134 @@ class LoanForm(forms.ModelForm):
             'docs_rent_roll':         forms.RadioSelect,
             'docs_lease_agreements':  forms.RadioSelect,
         }
-#        widgets = {'loan_desc':forms.Textarea(attrs={'rows':4,'cols':15})}
 
+        labels = {
+            'client_loan_type': gettext('Loan Type')
+        }
+
+
+
+class BlocLoanForm(forms.ModelForm):
+    class Meta:
+        model = BlocLoan
+        prefix = 'loan_type'
+
+        fields = (
+            'name',
+            'address',
+            'annual_receipt',
+            'loan_amt',
+            'term',
+        )
+
+        labels = {
+            'name':           gettext('Business Name'),
+            'address':        gettext('Business Address'),
+            'annual_receipt': gettext('Annual Receipt'),
+            'loan_amt':       gettext('Loan Amount'),
+            'term':           gettext('Requested Term'),
+        }
+
+class ConstructionLoanForm(forms.ModelForm):
+    class Meta:
+        model = ConstructionLoan
+        prefix = 'loan_type'
+
+        fields = (
+            'property_type',
+            'address',
+            'architect',
+            'contractor',
+            'bridge',
+            'land',
+        )
+
+        labels = {
+            'property_type': gettext('Property Type'),
+            'address':       gettext('Address'),
+            'architect':     gettext('Architect Name'),
+            'contractor':    gettext('General Contractor Name'),
+            'bridge':        gettext('Bridge'),
+            'land':          gettext('Land'),
+        }
+
+        widgets = {
+            'bridge': forms.CheckboxInput,
+            'land':forms.CheckboxInput,
+        }
+
+class MixedUseLoanForm(forms.ModelForm):
+    class Meta:
+        model = MixedUseLoan
+        prefix = 'loan_type'
+
+        fields = (
+            'property_type',
+            'business_list',
+            'annual_rent',
+            'annual_expense',
+            'purpose',
+            'cash_out',
+        )
+
+        labels = {
+            'property_type':  gettext('Major Property Type'),
+            'business_list':  gettext('List of Businesses'),
+            'annual_rent':    gettext('Total Annual Rent'),
+            'annual_expense': gettext('Total Annual Expenses'),
+            'purpose':        gettext('Purpose'),
+            'cash_out':       gettext('Cash Out'),
+        }
+
+        widgets = { 'cash_out': forms.CheckboxInput, }
+
+class MultiFamilyLoanForm(forms.ModelForm):
+    class Meta:
+        model = MultiFamilyLoan
+        prefix = 'loan_type'
+
+        fields = (
+            'number_of_units',
+            'year_built',
+            'annual_rent',
+            'annual_expense',
+            'purpose',
+            'cash_out',
+        )
+
+        labels = {
+            'units':          gettext('Number of Units'),
+            'year_built':     gettext('Year Builts'),
+            'annual_rent':    gettext('Total Annual Rent'),
+            'annual_expense': gettext('Total Annual Expenses'),
+            'purpose':        gettext('Purpose'),
+            'cash_out':       gettext('Cash Out'),
+        }
+
+        widgets = { 'cash_out': forms.CheckboxInput, }
+
+class RetailLoanForm(forms.ModelForm):
+    class Meta:
+        model = RetailLoan
+        prefix = 'loan_type'
+
+        fields = (
+            'property_type',
+            'name',
+            'address',
+            'annual_rent',
+            'annual_expense',
+            'purpose',
+            'cash_out',
+        )
+
+        labels = {
+            'property_type':  gettext('Property Type'),
+            'name':           gettext('Business Name'),
+            'annual_rent':    gettext('Total Annual Rent'),
+            'annual_expense': gettext('Total Annual Expenses'),
+            'purpose':        gettext('Purpose'),
+            'cash_out':       gettext('Cash Out'),
+        }
+
+        widgets = { 'cash_out': forms.CheckboxInput, }

@@ -31,10 +31,27 @@
           {{ loan_data.client_work_phone }}
           <label>Using POC:</label>
           {{ loan_data.client_using_poc }}
+          <label>Loan Type:</label>
+          {{ loan_data.client_loan_type.label_tag }}
+          {{ loan_data.client_loan_type }}
         </div>
       </div>
 
-<!--   POC Information Table -->
+      <div id="loanTypeForm">
+      {% if loantype != 'None' and loantype is not None%}
+        <div class="formContainer">
+          <div class="grid3c">
+            <h1 class="formHeader">{{ loantype }}</h1>
+            {% for field in loantype_fields %}
+                {{ field.label_tag }}
+                {{ field.value }}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+      </div>
+
+<!-- POC Information Table -->
       <div class="formContainer">
         <div class="grid3c">
           <h1 class="formHeader">Client POC Information</h1>

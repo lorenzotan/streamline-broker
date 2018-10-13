@@ -23,4 +23,6 @@ urlpatterns = [
     re_path('loan_form/(?P<pk>[0-9]+)/$', views.edit_loan_form, name='edit_loan_form'),
     path('loan_form/', views.loan_form, name='loan_form'),
     path('loan_list/', views.loan_list, name='loan_list'),
+
+    path('ajax/load_loantype_form/', views.load_loantype_form , name = 'load_loantype_form'),
 ]

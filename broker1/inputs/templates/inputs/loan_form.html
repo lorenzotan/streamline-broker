@@ -2,8 +2,8 @@
 {% block content %}
     <h1>Loan Form</h1>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    {% if loan.id %}
-    <form name="form" action="{% url 'inputs:edit_loan_form' pk=loan.id %}" method="POST">
+    {% if loan_id %}
+    <form name="form" action="{% url 'inputs:edit_loan_form' pk=loan_id %}" method="POST">
     {% else %}
     <form name="form" action="{% url 'inputs:loan_form' %}" method="POST">
     {% endif %}
@@ -39,7 +39,24 @@
           <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
         {% endfor %}
         </label>
+        <label>Loan Type:</label>
+        {{ form.client_loan_type }}
       </div>
+    </div>
+
+    <!-- space reserved for selected loan type -->
+    <div id="loanTypeForm">
+    {% if loantype is not None and loantype != 'None' %}
+      <div class="formContainer">
+        <div class="grid3c">
+          <h1 class="formHeader">{{ loantype }}</h1>
+          {% for field in loantype_fields %}
+              {{ field.label_tag }}
+              {{ field }}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
     </div>
 
 <!-- POC Information Table -->
@@ -233,4 +250,24 @@
       <button>{{ submit }}</button>
     </center>
     </form>
+    <script>
+    // TODO: put jquery in separate file
+    $('#id_client_loan_type').change(function() {
+        var choice = $('#id_client_loan_type').val();
+        if (choice == 'None') {
+            $("#loanTypeForm").empty();
+        } else {
+            var url = "/inputs/ajax/load_loantype_form/";
+            $.ajax({
+                url: url,
+                data: {
+                    'loantype': choice
+                },
+                success: function (data) {
+                    $("#loanTypeForm").html(data);
+                }
+            });
+        }
+    });
+    </script>
 {% endblock %}
