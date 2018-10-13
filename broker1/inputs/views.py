@@ -130,24 +130,26 @@ def lender_list(request):
 
 
 
-# XXX try using DetailView
 def loan_detail(request, pk):
-    template       = loader.get_template('inputs/loan_detail.html')
-    loan           = get_object_or_404(Loan, id=pk)
+    template = loader.get_template('inputs/loan_detail.html')
+    loan     = get_object_or_404(Loan, id=pk)
+    loantype = loan.client_loan_type
+    loantype_data = None
+    loantype_html = None
 
     # model obj
-    #loantype_model = LoanTypeModels.get(loan.client_loan_type)
-    #loantype_data  = get_object_or_404(loantype_model, client_id=pk)
-    #loantype       = loantype_model.objects.filter(client_id=pk).values()
-
-    #print ()
-    #print ("DEBUG: {}".format(loantype))
-    #print ()
+    #XXX revisit
+    if loantype is not None and loantype != 'None':
+        loantype_model = LoanTypeModels.get(loan.client_loan_type)
+        loantype_data  = get_object_or_404(loantype_model, client_id=pk)
+        loantype_fields = loantype_model.objects.filter(client_id=pk).values()
+        loantype_form_obj = LoanTypeForms.get(loantype)
+        loantype_html = loantype_form_obj(instance=loantype_data)
 
     context = {
         'loan_data':       loan,
-    #    'loantype':        loan.client_loan_type,
-    #    'loantype_fields': loantype_data,
+        'loantype':        loan.client_loan_type,
+        'loantype_fields': loantype_html,
     }
 
     return HttpResponse(template.render(context, request))
@@ -170,6 +172,7 @@ def edit_loan_form(request, pk):
         loantype_form_obj  = LoanTypeForms.get(loantype)
         loantype_model_obj = LoanTypeModels.get(loantype)
 
+        #XXX revisit
         if loantype != 'None' and loantype is not None:
             loantype_data, created = loantype_model_obj.objects.get_or_create(client_id=pk)
         # this returns a queryset object

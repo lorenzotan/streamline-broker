@@ -42,16 +42,17 @@
     </div>
 
     <div id="loanTypeForm">
-    {% comment not currently working %}
-    {% if loantype != None %}
+    {% if loantype != 'None' and loantype is not None%}
       <div class="formContainer">
-        <h1 class="formHeader">{{ loantype }}</h1>
-        {% for field in loantype_fields %}
-            {{ field }}
-        {% endfor %}
+        <div class="grid3c">
+          <h1 class="formHeader">{{ loantype }}</h1>
+          {% for field in loantype_fields %}
+              {{ field.label_tag }}
+              {{ field.value }}
+          {% endfor %}
+        </div>
       </div>
     {% endif %}
-    {% endcomment %}
     </div>
 
 <!-- POC Information Table -->
