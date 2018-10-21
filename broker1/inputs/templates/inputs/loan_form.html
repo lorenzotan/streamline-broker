@@ -45,8 +45,8 @@
     </div>
 
     <!-- space reserved for selected loan type -->
-    <div id="loanTypeForm">
     {% if loantype is not None and loantype != 'None' %}
+    <div id="loanTypeForm">
       <div class="formContainer">
         <div class="grid3c">
           <h1 class="formHeader">{{ loantype }}</h1>
@@ -56,8 +56,11 @@
           {% endfor %}
         </div>
       </div>
-    {% endif %}
     </div>
+    {% else %}
+    <div id="loanTypeForm" style="display: none;">
+    </div>
+    {% endif %}
 
 <!-- POC Information Table -->
     <div class="formContainer">
@@ -255,6 +258,7 @@
     $('#id_client_loan_type').change(function() {
         var choice = $('#id_client_loan_type').val();
         if (choice == 'None') {
+            $("#loanTypeForm").slideUp();
             $("#loanTypeForm").empty();
         } else {
             var url = "/inputs/ajax/load_loantype_form/";
@@ -265,6 +269,7 @@
                 },
                 success: function (data) {
                     $("#loanTypeForm").html(data);
+                    $("#loanTypeForm").slideDown();
                 }
             });
         }
