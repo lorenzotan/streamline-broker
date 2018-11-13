@@ -173,10 +173,22 @@ class Lender(models.Model):
     sba_micro         = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
     sba_other         = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
 
-    misc_HELOC        = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
-    misc_BLOC         = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
-    misc_bridge       = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
+    # HELOC
+    heloc_1_pos     = models.BooleanField()
+    heloc_2_pos     = models.BooleanField()
 
+    # BLOC
+    bloc_resid_prop = models.BooleanField()
+    bloc_stocks     = models.BooleanField()
+    bloc_savings    = models.BooleanField()
+    bloc_inv_prop   = models.BooleanField()
+    bloc_1_pos      = models.BooleanField()
+    bloc_2_pos      = models.BooleanField()
+
+    # Bridge
+    bridge          = models.BooleanField()
+
+    # Qualifiers
     qual_pays_fees        = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
     qual_outside_ca       = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
     qual_1031_exchange    = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
