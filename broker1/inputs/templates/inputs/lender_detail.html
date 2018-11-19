@@ -121,16 +121,43 @@
         </div>
       </div>
 
-      <!-- Miscellaneious Table -->
+      <!-- https://stackoverflow.com/questions/7326505/django-form-how-to-check-out-checkbox-state-in-template -->
+      <!-- HELOC Table -->
+      <div class="formContainer">
+        <div class="grid2c">
+          <h1 class="formHeader">HELOC Loans</h1>
+          <label>1st Position:</label>
+          {{ lender_data.heloc_1_pos }}
+          <label>2nd Position:</label>
+          {{ lender_data.heloc_2_pos }}
+        </div>
+      </div>
+
+      <!-- BLOC Table -->
       <div class="formContainer">
         <div class="grid3c">
-          <h1 class="formHeader">Miscellaneous Loans</h1>
-          <label>HELOC:</label>
-          {{ lender_data.misc_HELOC }}
-          <label>BLOC:</label>
-          {{ lender_data.misc_BLOC }}
+          <h1 class="formHeader">BLOC Loans</h1>
+          <label>Residential Property:</label>
+          {{ lender_data.bloc_resid_prop }}
+          <label>Investment Property:</label>
+          {{ lender_data.bloc_inv_prop }}
+          <label>Savings:</label>
+          {{ lender_data.bloc_savings }}
+          <label>Stocks:</label>
+          {{ lender_data.bloc_stocks }}
+          <label>1st Position:</label>
+          {{ lender_data.bloc_1_pos }}
+          <label>2nd Position:</label>
+          {{ lender_data.bloc_2_pos }}
+        </div>
+      </div>
+
+      <!-- Bridge Table -->
+      <div class="formContainer">
+        <div class="grid2c">
+          <h1 class="formHeader">Bridge Loans</h1>
           <label>Bridge:</label>
-          {{ lender_data.misc_bridge }}
+          {{ lender_data.bridge }}
         </div>
       </div>
 

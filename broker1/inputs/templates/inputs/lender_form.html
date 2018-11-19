@@ -229,28 +229,42 @@
         </div>
       </div>
 
-      <!-- Miscellaneious Table -->
+      <!-- HELOC Table -->
+      <div class="formContainer">
+        <div class="grid2c">
+          <h1 class="formHeader">HELOC Loans</h1>
+          <label>1st Position:</label>
+          <label>{{ form.heloc_1_pos }}</label>
+          <label>2nd Position:</label>
+          <label>{{ form.heloc_2_pos }}</label>
+        </div>
+      </div>
+
+      <!-- BLOC Table -->
       <div class="formContainer">
         <div class="grid3c">
-          <h1 class="formHeader">Miscellaneous Loans</h1>
-          <label>HELOC:</label>
-          <label>
-          {% for choice in form.misc_HELOC %}
-            <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-          {% endfor %}
-          </label>
-          <label>BLOC:</label>
-          <label>
-          {% for choice in form.misc_BLOC %}
-            <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-          {% endfor %}
-          </label>
+          <h1 class="formHeader">BLOC Loans</h1>
+          <label>Residential Property:</label>
+          <label>{{ form.bloc_resid_prop }}</label>
+          <label>Investment Property:</label>
+          <label>{{ form.bloc_inv_prop }}</label>
+          <label>Savings Account:</label>
+          <label>{{ form.bloc_savings }}</label>
+          <label>Stocks:</label>
+          <label>{{ form.bloc_stocks }}</label>
+          <label>1st Position:</label>
+          <label>{{ form.bloc_1_pos }}</label>
+          <label>2nd Position:</label>
+          <label>{{ form.bloc_2_pos }}</label>
+        </div>
+      </div>
+
+      <!-- Bridge Table -->
+      <div class="formContainer">
+        <div class="grid2c">
+          <h1 class="formHeader">Bridge Loans</h1>
           <label>Bridge:</label>
-          <label>
-          {% for choice in form.misc_bridge %}
-            <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-          {% endfor %}
-          </label>
+          <label>{{ form.bridge }}</label>
         </div>
       </div>
 
