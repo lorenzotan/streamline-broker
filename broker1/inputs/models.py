@@ -7,6 +7,18 @@ LOAN_PURPOSE = (
     ('refurb', 'Refurbish'),
 )
 
+class Broker(models.Model):
+    first_name = models.CharField(max_length=50, default=None, blank=True, null=True)
+    last_name  = models.CharField(max_length=50, default=None, blank=True, null=True)
+    address    = models.CharField(max_length=50, default=None, blank=True, null=True)
+    city       = models.CharField(max_length=50, default=None, blank=True, null=True)
+    state      = models.CharField(max_length=50, default=None, blank=True, null=True)
+    zip_code   = models.CharField(max_length=50, default=None, blank=True, null=True)
+    work_email = models.EmailField(max_length=50, default=None, blank=True, null=True)
+    home_email = models.EmailField(max_length=50, default=None, blank=True, null=True)
+    work_phone = models.CharField(max_length=50, default=None, blank=True, null=True)
+    home_phone = models.CharField(max_length=50, default=None, blank=True, null=True)
+
 class Loan(models.Model):
 
     # Boolean Choices
