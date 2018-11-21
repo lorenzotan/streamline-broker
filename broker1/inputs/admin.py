@@ -23,34 +23,34 @@ def export_loan_csv(modeladmin, request, queryset):
         smart_str(u"Client Work Phone"),
         smart_str(u"Client Cell Phone"),
         smart_str(u"Client Using POC"),
-        
+
         smart_str(u"POC Name"),
         smart_str(u"POC Company"),
         smart_str(u"POC Work Phone"),
         smart_str(u"POC Cell Phone"),
         smart_str(u"POC Email"),
-        
+
         smart_str(u"Occupation"),
         smart_str(u"Company Name"),
         smart_str(u"Company Street Address"),
         smart_str(u"Company City"),
         smart_str(u"Company State"),
         smart_str(u"Company Zip"),
-        
+
         smart_str(u"Loan Amount"),
         smart_str(u"Loan To Value"),
         smart_str(u"Loan DSCR"),
         smart_str(u"Loan Description"),
-        
+
         smart_str(u"Business Name"),
         smart_str(u"Business Main Phone"),
         smart_str(u"Business Website"),
         smart_str(u"Business Type"),
         smart_str(u"Year Business Established"),
-        
-                  
 
-        
+
+
+
     ])
     for obj in queryset:
         writer.writerow([
@@ -95,7 +95,7 @@ def export_loan_csv(modeladmin, request, queryset):
 
             smart_str(obj.property_address),
             smart_str(obj.property_value),
-            
+
             smart_str(obj.docs_executive_summary),
             smart_str(obj.docs_credit_report),
             smart_str(obj.docs_personal_taxes),
@@ -107,15 +107,15 @@ def export_loan_csv(modeladmin, request, queryset):
             smart_str(obj.docs_environmental),
             smart_str(obj.docs_rent_roll),
             smart_str(obj.docs_lease_agreements),
-            
+
             smart_str(obj.business_name),
             smart_str(obj.business_main_phone),
             smart_str(obj.business_website),
             smart_str(obj.business_type),
             smart_str(obj.business_year_established),
-            
 
-    
+
+
         ])
     return response
 export_loan_csv.short_description = u"Export Loan CSV"
@@ -175,7 +175,7 @@ def export_lender_csv(modeladmin, request, queryset):
         smart_str(u"SBA CAPline?"),
         smart_str(u"SBA Microloan?"),
         smart_str(u"SBA Other?"),
-            
+
         smart_str(u"HELOC?"),
         smart_str(u"BLOC?"),
         smart_str(u"Bridge?"),
@@ -239,21 +239,21 @@ def export_lender_csv(modeladmin, request, queryset):
             smart_str(obj.lender_work_phone),
             smart_str(obj.lender_cell_phone),
             smart_str(obj.lender_solicitation),
-            
+
             smart_str(obj.oo_office),
             smart_str(obj.oo_warehouse),
             smart_str(obj.oo_manufacturing),
             smart_str(obj.oo_medical),
             smart_str(obj.oo_mixed_use),
             smart_str(obj.oo_other),
-            
+
             smart_str(obj.inv_office),
             smart_str(obj.inv_warehouse),
             smart_str(obj.inv_manufacturing),
             smart_str(obj.inv_medical),
             smart_str(obj.inv_mixed_use),
             smart_str(obj.inv_other),
-            
+
             smart_str(obj.mf_2to4),
             smart_str(obj.mf_gt4),
 
@@ -270,9 +270,15 @@ def export_lender_csv(modeladmin, request, queryset):
             smart_str(obj.sba_micro),
             smart_str(obj.sba_other),
 
-            smart_str(obj.misc_HELOC),
-            smart_str(obj.misc_BLOC),
-            smart_str(obj.misc_bridge),
+            smart_str(obj.heloc_1_pos),
+            smart_str(obj.heloc_2_pos),
+            smart_str(obj.bloc_resid_prop),
+            smart_str(obj.bloc_stocks),
+            smart_str(obj.bloc_savings),
+            smart_str(obj.bloc_inv_prop),
+            smart_str(obj.bloc_1_pos),
+            smart_str(obj.bloc_2_pos),
+            smart_str(obj.bridge),
 
             smart_str(obj.qual_pays_fees),
             smart_str(obj.qual_outside_ca),
@@ -322,7 +328,7 @@ def export_lender_csv(modeladmin, request, queryset):
         ])
     return response
 export_lender_csv.short_description = u"Export Lender CSV"
- 
+
 class LenderAdmin(admin.ModelAdmin):
     actions = [export_lender_csv]
 
