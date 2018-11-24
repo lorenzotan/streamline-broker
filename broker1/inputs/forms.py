@@ -22,6 +22,7 @@ class BrokerForm(forms.ModelForm):
 
 
 class LenderForm(forms.ModelForm):
+    lender_solicitation = forms.NumberInput(attrs={'size': 3})
     # class Meta tells django what model and fields to use
     class Meta:
         model = Lender
@@ -48,7 +49,6 @@ class LenderForm(forms.ModelForm):
         )
 
         widgets = {
-            'lender_solicitation': forms.RadioSelect,
             'oo_office': forms.RadioSelect,
             'oo_warehouse': forms.RadioSelect,
             'oo_manufacturing': forms.RadioSelect,

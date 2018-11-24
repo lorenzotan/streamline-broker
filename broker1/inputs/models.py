@@ -148,7 +148,7 @@ class Lender(models.Model):
     lender_personal_email = models.EmailField(max_length=200, default = None, blank = True, null = True)
     lender_work_phone     = models.IntegerField(default = None, blank = True, null = True)
     lender_cell_phone     = models.IntegerField(default = None, blank = True, null = True)
-    lender_solicitation   = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
+    lender_solicitation   = models.IntegerField(default = None, blank = True, null = True)
 
     # Owner Occupied
     oo_office        = models.CharField(max_length=3, choices=BOOLEAN_CHOICES, default=None, )
