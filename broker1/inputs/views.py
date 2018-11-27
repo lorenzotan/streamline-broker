@@ -255,6 +255,15 @@ def loan_list(request):
     return HttpResponse(template.render(context, request))
 
 
+def broker_list(request):
+    template = loader.get_template('inputs/broker_list.html')
+    broker_list = Broker.objects.all()
+    context = {
+        'brokers': broker_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def broker_form(req):
     submit = 'Submit'
     tmpl = loader.get_template("inputs/broker_form.html")

@@ -15,6 +15,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('broker_form/', views.broker_form, name='broker_form'),
+    path('broker_list/', views.broker_list, name='broker_list'),
 
     re_path('lender/(?P<pk>[0-9]+)/$', views.lender_detail, name='lender_detail'),
     re_path('lender_form/(?P<pk>[0-9]+)/$', views.edit_lender_form, name='edit_lender_form'),
