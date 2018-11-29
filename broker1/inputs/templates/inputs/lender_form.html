@@ -36,11 +36,7 @@
           <label>Work Phone:</label>
           {{ form.lender_work_phone }}
           <label>Solicitation:</label>
-          <label>
-          {% for choice in form.lender_solicitation %}
-            <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-          {% endfor %}
-          </label>
+          {{ form.lender_solicitation }}
         </div>
       </div>
 
