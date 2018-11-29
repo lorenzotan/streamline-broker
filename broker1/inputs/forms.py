@@ -14,6 +14,13 @@ class CommentForm(forms.Form):
     comment = forms.CharField(widget=forms.Textarea)
 
 
+class BrokerForm(forms.ModelForm):
+    class Meta:
+        model = Broker
+        fields = ('first_name', 'last_name', 'address', 'city', 'state', 'zip_code',
+                  'work_email', 'home_email', 'work_phone', 'home_phone')
+
+
 class LenderForm(forms.ModelForm):
     lender_solicitation = forms.NumberInput(attrs={'size': 3})
     # class Meta tells django what model and fields to use

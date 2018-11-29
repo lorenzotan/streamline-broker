@@ -1,0 +1,43 @@
+{% extends 'inputs/base.html' %}
+{% block content %}
+    <h1>Broker Form</h1>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if lender.id %}
+    <form name="form" action="{% url 'inputs:edit_lender_form' pk=lender.id %}" method="POST">
+    {% else %}
+    <form name="form" action="{% url 'inputs:broker_form' %}" method="POST">
+    {% endif %}
+      {% csrf_token %}
+
+      <!-- Name Table -->
+      <div class="formContainer">
+        <div class="grid3c">
+          <h1 class="formHeader">Broker Information</h1>
+          <label>First Name:</label>
+          {{ form.first_name }}
+          <label>Last Name:</label>
+          {{ form.last_name }}
+          <label>Address:</label>
+          {{ form.address }}
+          <label>City:</label>
+          {{ form.city }}
+          <label>State:</label>
+          {{ form.state }}
+          <label>Zip:</label>
+          {{ form.zip_code }}
+          <label>Email:</label>
+          {{ form.home_email }}
+          <label>Work Email:</label>
+          {{ form.work_email }}
+          <label>Cell Phone:</label>
+          {{ form.home_phone }}
+          <label>Work Phone:</label>
+          {{ form.work_phone }}
+        </div>
+      </div>
+
+      <center>
+        <button>{{ submit }}</button>
+      </center>
+    </form>
+{% endblock %}

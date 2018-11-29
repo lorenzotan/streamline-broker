@@ -97,7 +97,7 @@ def edit_lender_form(request, pk):
 
 
 def lender_form(request):
-    tmp = loader.get_template("inputs/lender_form.html")
+    tmpl = loader.get_template("inputs/lender_form.html")
     submit = 'Submit'
 
     if request.method == 'POST':
@@ -116,7 +116,7 @@ def lender_form(request):
         'submit': submit,
     }
 
-    return HttpResponse(tmp.render(context, request))
+    return HttpResponse(tmpl.render(context, request))
 
 
 def lender_list(request):
@@ -253,3 +253,33 @@ def loan_list(request):
         'clients': loan_list,
     }
     return HttpResponse(template.render(context, request))
+
+
+def broker_list(request):
+    template = loader.get_template('inputs/broker_list.html')
+    broker_list = Broker.objects.all()
+    context = {
+        'brokers': broker_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def broker_form(req):
+    submit = 'Submit'
+    tmpl = loader.get_template("inputs/broker_form.html")
+
+    if req.method == 'POST':
+        form = BrokerForm(req.POST)
+
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = BrokerForm()
+
+    context = {
+        'form':   form,
+        'submit': submit,
+    }
+
+    return HttpResponse(tmpl.render(context, req))
