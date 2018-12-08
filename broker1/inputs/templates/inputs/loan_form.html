@@ -128,23 +128,11 @@
         <label>FICO:</label>
         {{ form.fin_fico }}
         <label>Owns Home:</label>
-        <label>
-        {% for choice in form.fin_owns_home %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.fin_owns_home }}</label>
         <label>Bankruptcy?:</label>
-        <label>
-        {% for choice in form.fin_bankruptcy %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.fin_bankruptcy }}</label>
         <label>Short Sale:</label>
-        <label>
-        {% for choice in form.fin_short_sale %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.fin_short_sale }}</label>
       </div>
     </div>
 
@@ -164,71 +152,27 @@
       <div class="grid3c">
         <h1 class="formHeader">Needs List</h1>
         <label>Executive Summary:</label>
-        <label>
-        {% for choice in form.docs_executive_summary %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_executive_summary }}</label>
         <label>Credit Report:</label>
-        <label>
-        {% for choice in form.docs_credit_report %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_credit_report }}</label>
         <label>Personal Taxes:</label>
-        <label>
-        {% for choice in form.docs_personal_taxes %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_personal_taxes }}</label>
         <label>Business Taxes:</label>
-        <label>
-        {% for choice in form.docs_business_taxes %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
-        <label>P & L:</label>
-        <label>
-        {% for choice in form.docs_P_and_L %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_business_taxes }}</label>
+        <label>P &amp; L:</label>
+        <label>{{ form.docs_P_and_L }}</label>
         <label>Expense Report:</label>
-        <label>
-        {% for choice in form.docs_expense_report %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_expense_report }}</label>
         <label>Broker's Opinion:</label>
-        <label>
-        {% for choice in form.docs_brokers_opinion %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_brokers_opinion }}</label>
         <label>Appraisal:</label>
-        <label>
-        {% for choice in form.docs_appraisal %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_appraisal }}</label>
         <label>Environmental:</label>
-        <label>
-        {% for choice in form.docs_environmental %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_environmental }}</label>
         <label>Rent Roll:</label>
-        <label>
-        {% for choice in form.docs_rent_roll %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_rent_roll }}</label>
         <label>Lease Agreements:</label>
-        <label>
-        {% for choice in form.docs_lease_agreements %}
-          <label>{{ choice }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        {% endfor %}
-        </label>
+        <label>{{ form.docs_lease_agreements }}</label>
       </div>
     </div>
 
