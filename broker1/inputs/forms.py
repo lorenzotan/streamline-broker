@@ -156,20 +156,6 @@ class LoanForm(forms.ModelForm):
 
         widgets = {
             'client_using_poc':       forms.RadioSelect,
-            'fin_owns_home':          forms.RadioSelect,
-            'fin_bankruptcy':         forms.RadioSelect,
-            'fin_short_sale':         forms.RadioSelect,
-            'docs_executive_summary': forms.RadioSelect,
-            'docs_credit_report':     forms.RadioSelect,
-            'docs_personal_taxes':    forms.RadioSelect,
-            'docs_business_taxes':    forms.RadioSelect,
-            'docs_P_and_L':           forms.RadioSelect,
-            'docs_expense_report':    forms.RadioSelect,
-            'docs_brokers_opinion':   forms.RadioSelect,
-            'docs_appraisal':         forms.RadioSelect,
-            'docs_environmental':     forms.RadioSelect,
-            'docs_rent_roll':         forms.RadioSelect,
-            'docs_lease_agreements':  forms.RadioSelect,
         }
 
         labels = {
